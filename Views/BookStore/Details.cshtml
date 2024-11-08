@@ -15,6 +15,9 @@
         <p>Giá bán: <span style="color:red">@Model.Giaban</span></p>
     </div>
 </div>
-<button style="background-color: red"> <span style="color: white">Đặt mua</span></button>
+@*<button style="background-color: red"> <span style="color: white">Đặt mua</span></button>*@
+<div id="Datmua">
+    <a href="@Url.Action("ThemGioHang", "GioHang", new {@Model.Masach, @strURL = Request.Url.ToString()})">Đặt mua</a>
+</div>
 
 
