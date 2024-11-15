@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcBookStore.Controllers
 {
     public class BookStoreController : Controller
     {
-        QLBANSACHEntities data = new QLBANSACHEntities();
+        QLBANSACHEntities1 data = new QLBANSACHEntities1();
         private List<SACH> Laysachmoi(int count)
         {
             return data.SACHes.OrderByDescending(a => a.Ngaycapnhat).ToList();
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var sachmoi = Laysachmoi(5);
-            return View(sachmoi);
+            int pageSize = 2;
+            int pageNum = (page ?? 1);
+            var sachmoi = Laysachmoi(pageSize);
+            return View(sachmoi.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Details(int id)
@@ -34,10 +38,12 @@ namespace MvcBookStore.Controllers
             return PartialView(chude);
         }
 
-        public ActionResult SPTheochude(int id)
+        public ActionResult SPTheochude(int id, int? page)
         {
-            var sach = from s in data.SACHes where s.MaCD == id select s;
-            return View(sach);
+            int pageSize = 2;
+            int pageNum = (page ?? 1);
+            var sach = from s in data.SACHes where s.MaCD == id orderby s.Tensach select s;
+            return View(sach.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Nhaxuatban()
@@ -46,10 +52,12 @@ namespace MvcBookStore.Controllers
             return PartialView(nxb);
         }
 
-        public ActionResult SPTheoNXB(int id)
+        public ActionResult SPTheoNXB(int id, int? page)
         {
-            var sach = from s in data.SACHes where s.MaNXB == id select s;
-            return View(sach);
+            int pageSize = 2;
+            int pageNum = (page ?? 1);
+            var sach = from s in data.SACHes where s.MaNXB == id orderby s.Tensach select s;
+            return View(sach.ToPagedList(pageNum, pageSize));
         }
     }
 }

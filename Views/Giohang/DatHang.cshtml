@@ -6,27 +6,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align:center; font-size: 70px; font-weight:bold;">
+<h2 style="text-align:center; font-size: 20px; font-weight:bold;">
     Đặt Hàng
 </h2>
-<h2 style="text-align:center; font-size: 70px; font-weight:bold;">
+<h2 style="text-align:center; font-size: 20px; font-weight:bold;">
     @ViewBag.ThongBao
 </h2>
-<table style="width: 100%;">
-    <tr>
-        <th>STT</th>
-        <th>Tên sách</th>
-        <th>Hình ảnh</th>
-        <th>Số lượng</th>
-        <th>Đơn giá</th>
-        <th>Thành tiền</th>
+<table align="center" border="1" style="margin-bottom:20px">
+    <tr style="text-align:center; font-weight:bold">
+        <td> Mã sách </td>
+        <td> Tên sách </td>
+        <td> Hình ảnh </td>
+        <td> Số lượng </td>
+        <td> Đơn giá </td>
+        <td> Thành tiền </td>
     </tr>
     @foreach (var item in Model)
     {
         <tr style="text-align:center; font-weight:bold">
             <td> @item.iMasach </td>
             <td> @item.sTensach </td>
-            <td><img src="~/Content/images/@item.sAnhbia" /></td>
+            <td><img src="~/Content/images/@item.sAnhbia" width="150" height="150" /></td>
             @using (Html.BeginForm("CapNhatGioHang", "Giohang", new { iMasp = item.iMasach }))
             {
                 <td>

@@ -7,7 +7,7 @@ namespace MvcBookStore.Models
 {
     public class Giohang
     {
-        private readonly QLBANSACHEntities _context = new QLBANSACHEntities();
+        private readonly QLBANSACHEntities1 _context = new QLBANSACHEntities1();
 
         public int iMasach {  get; set; }
         public string sTensach { get; set; }

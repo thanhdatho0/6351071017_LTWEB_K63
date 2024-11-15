@@ -1,0 +1,39 @@
+﻿@using MvcBookStore.Models
+@model List<ThongKeViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thống kê số lượng sách theo từng chủ đề</h2>
+<canvas id="bookChart" width="400" height="200"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('bookChart').getContext('2d');
+        var bookData = {
+            labels: @Html.Raw(Json.Encode(@Model.Select(x => x.TenChuDe))),
+            datasets: [{
+                label: 'Số lượng sách',
+                data: @Html.Raw(Json.Encode(Model.Select(x => x.SoLuong))),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        var bookChart = new Chart(ctx, {
+            type: 'bar',
+            data: bookData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}
+

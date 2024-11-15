@@ -9,7 +9,7 @@ namespace MvcBookStore.Controllers
 {
     public class NguoidungController : Controller
     {
-        private readonly QLBANSACHEntities _context = new QLBANSACHEntities();
+        private readonly QLBANSACHEntities1 _context = new QLBANSACHEntities1();
         
 
         // GET: Nguoidung
